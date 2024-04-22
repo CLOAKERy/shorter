@@ -1,0 +1,19 @@
+﻿@model shorter.Models.LinkViewModel
+
+@{
+    ViewData["Title"] = "Добавить ссылку";
+}
+
+
+
+<div class="container">
+    <h1>Добавить ссылку</h1>
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="LongUrl" class="control-label">Длинная ссылка:</label>
+            <input asp-for="LongUrl" class="form-control" />
+            <span asp-validation-for="LongUrl" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+</div>

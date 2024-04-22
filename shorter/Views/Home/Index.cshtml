@@ -1,0 +1,43 @@
+﻿@model shorter.Models.LinkViewModels
+
+@{
+    ViewData["Title"] = "Список ссылок";
+}
+
+<h1>Список ссылок</h1>
+
+<p>
+    <a href="@Url.Action("IndexCreate", "Crud")" class="btn btn-primary">Создать новую ссылку</a>
+</p>
+@if (Model != null)
+{
+ 
+        <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Длинный URL</th>
+            <th>Сокращенный URL</th>
+            <th>Дата создания</th>
+            <th>Количество переходов</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (LinkViewModel link in Model.linkViewModels)
+        {
+            <tr>
+                <td><div class="text-break">@link.LongUrl</div></td>
+                    <td><a href="@Model.BaseUrl/Redirect/RedirectTo?shortenedUrl=@link.ShortenedUrl">@Model.BaseUrl/Redirect/RedirectTo?shortenedUrl=@link.ShortenedUrl</a></td>
+                <td>@link.CreatedDate.ToString("dd/MM/yyyy")</td>
+                <td>@link.ClickCount</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Crud", new { id = link.Id })" class="btn btn-primary">Редактировать</a>
+                    <a href="@Url.Action("Delete", "Crud", new { id = link.Id })" class="btn btn-danger">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> 
+
+}
+
